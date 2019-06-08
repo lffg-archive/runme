@@ -45,6 +45,7 @@ export default function applyMiddlewares(app: Express, server: Server) {
       })
 
       commandInstance.on('close', () => {
+        commands.delete(id)
         console.log(`Command "${id}" closed (PID=${commandInstance}).`)
         socket.emit('command-closed', { id, type: 'closed' })
       })
@@ -55,6 +56,7 @@ export default function applyMiddlewares(app: Express, server: Server) {
         const pid = command.pid
         command.kill()
         console.log(`Command "${id}" killed (PID=${pid}).`)
+        commands.delete(id)
       })
     })
   })
