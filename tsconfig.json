@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "include": ["src"],
+  "include": ["src", "bin"],
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
