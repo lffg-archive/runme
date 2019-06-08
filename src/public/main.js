@@ -1,6 +1,6 @@
 /*global io*/
 
-import { createContainer } from './command-utils.js'
+import { createContainer, appendToLog } from './command-utils.js'
 import { form, fields } from './selectors.js'
 import { getId } from './utils.js'
 
@@ -25,21 +25,18 @@ window.getCommands = () => commands
 
 socket.on('command-created', (data) => {
   console.log('command-created', data)
-  commands.set(data.id, createContainer(data.id))
+  commands.set(data.id, createContainer(data.id, data.commandString))
 })
 
 socket.on('command-output', (data) => {
-  console.log('-'.repeat(15))
-  console.log('command-output')
-  console.log(data)
-  console.log('-'.repeat(15))
+  console.log('command-output', data)
+  const { log } = commands.get(data.id)
+  data.data.split('\n').forEach((line) => appendToLog(log, line))
 })
 
 socket.on('command-closed', (data) => {
-  console.log('-'.repeat(15))
-  console.log('command-close')
-  console.log(data)
-  console.log('-'.repeat(15))
+  const { container } = commands.get(data.id)
+  container.classList.add('--d')
 })
 
 socket.on('connect', () => console.log('@socket.event: connect'))

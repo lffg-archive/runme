@@ -8,10 +8,21 @@
   <body>
     <form id="control">
       Comando:
-      <input type="text" id="command" pattern="^\w+$" autocomplete="off" />
+      <input
+        type="text"
+        id="command"
+        pattern="^\w+$"
+        autocomplete="off"
+        value="ls"
+      />
       <br />
       Argumentos (separe por espaços):
-      <input type="text" id="args" autocomplete="off" />
+      <input
+        type="text"
+        id="args"
+        autocomplete="off"
+        value="-1a /Users/luiz/Desktop"
+      />
       <br />
       <button id="submit">Enviar</button>
     </form>
