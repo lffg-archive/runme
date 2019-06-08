@@ -23,3 +23,19 @@ body {
 body {
   margin: 5rem;
 }
+
+.command-container.--r h2::before {
+  content: '[Em Execução]';
+  margin-right: 0.5rem;
+  background-color: green;
+  color: #fff;
+  padding: 3px;
+}
+
+.command-container.--d h2::before {
+  content: '[Finalizado]';
+  margin-right: 0.5rem;
+  background-color: #673ab7;
+  color: #fff;
+  padding: 3px;
+}

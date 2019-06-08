@@ -7,16 +7,18 @@
   </head>
   <body>
     <form id="control">
-      Comando: <input type="text" id="command" />
+      Comando:
+      <input type="text" id="command" pattern="^\w+$" autocomplete="off" />
       <br />
-      Argumentos (separe por espaços): <input type="text" id="args" />
+      Argumentos (separe por espaços):
+      <input type="text" id="args" autocomplete="off" />
       <br />
       <button id="submit">Enviar</button>
     </form>
 
     <pre id="log"></pre>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

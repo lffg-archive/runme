@@ -14,7 +14,7 @@ export default function bootstrapServer(
     const server = http.createServer(app)
     applyMiddlewares(app, server)
 
-    const port = options.port || 12345
+    const port = options.port || 5000
     server.listen(port, () => resolve(port))
   })
 }
