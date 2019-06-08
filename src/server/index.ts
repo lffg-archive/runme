@@ -1,3 +1,4 @@
+import http from 'http'
 import express from 'express'
 import applyMiddlewares from './middlewares'
 
@@ -10,9 +11,10 @@ export default function bootstrapServer(
 ): Promise<number> {
   return new Promise((resolve) => {
     const app = express()
-    applyMiddlewares(app)
+    const server = http.createServer(app)
+    applyMiddlewares(app, server)
 
     const port = options.port || 12345
-    app.listen(port, () => resolve(port))
+    server.listen(port, () => resolve(port))
   })
 }
