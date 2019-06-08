@@ -4,13 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-<<<<<<< HEAD
     "dev": "ts-node src/dev.ts",
     "lint": "eslint . --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "yarn lint --fix"
-=======
-    "dev": "ts-node src/dev.ts"
->>>>>>> 6bf666feef09291553f1d8b61258f8c20b2aa668
   },
   "dependencies": {
     "express": "^4.17.1"
