@@ -1,13 +1,13 @@
 /*global io*/
 
-import { createContainer, appendToLog } from './command-utils.js'
-import { form, fields } from './selectors.js'
-import { getId } from './utils.js'
+import { createContainer, appendToLog } from './command-utils.js';
+import { form, fields } from './selectors.js';
+import { getId } from './utils.js';
 
-const socket = io()
+const socket = io();
 
 form.addEventListener('submit', (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
   socket.emit('new-command', {
     id: getId(),
@@ -16,29 +16,29 @@ form.addEventListener('submit', (event) => {
       .split(' ')
       .map((arg) => arg.trim())
       .filter(Boolean)
-  })
-})
+  });
+});
 
 /** @type {Map<string, { container: HTMLElement, log: HTMLElement }>} */
-const commands = new Map()
-window.getCommands = () => commands
+const commands = new Map();
+window.getCommands = () => commands;
 
 socket.on('command-created', (data) => {
-  console.log('command-created', data)
-  commands.set(data.id, createContainer(data.id, data.commandString))
-})
+  console.log('command-created', data);
+  commands.set(data.id, createContainer(data.id, data.commandString));
+});
 
 socket.on('command-output', (data) => {
-  console.log('command-output', data)
-  const { log } = commands.get(data.id)
-  data.data.split('\n').forEach((line) => appendToLog(log, line))
-})
+  console.log('command-output', data);
+  const { log } = commands.get(data.id);
+  data.data.split('\n').forEach((line) => appendToLog(log, line));
+});
 
 socket.on('command-closed', (data) => {
-  const { container } = commands.get(data.id)
-  container.classList.add('--d')
-})
+  const { container } = commands.get(data.id);
+  container.classList.add('--d');
+});
 
-socket.on('connect', () => console.log('@socket.event: connect'))
-socket.on('event', () => console.log('@socket.event: event'))
-socket.on('disconnect', () => console.log('@socket.event: disconnect'))
+socket.on('connect', () => console.log('@socket.event: connect'));
+socket.on('event', () => console.log('@socket.event: event'));
+socket.on('disconnect', () => console.log('@socket.event: disconnect'));

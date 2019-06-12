@@ -7,5 +7,5 @@ export function getId() {
         .toString()
         .substr(2)
     ) + Date.now()
-  ).toString(16)
+  ).toString(16);
 }
